@@ -1,0 +1,76 @@
+:root {
+
+    --background: #101013;
+    --border: #3A3A3AFF;
+    --border-alpha: #3a3a3a80;
+    --secondary: rgba(28, 28, 31, 1);
+    --secondary-op: rgba(28, 28, 31, 0.5);
+    --text-color: #fff;
+    --text-alt-color: #c2c2c2;
+    --primary: #0084FF;
+    --main-theme: #901d35;
+    --s-main-theme: #b18891;
+    --area: #2a2a2d;
+    --area-alt: #252529;
+    --theme: #901d35;
+    --theme-alt: #720921;
+    --opacity-bg: rgba(16, 16, 19, 0.5);
+    --opacity-bg-sb: rgba(16, 16, 19, 0.5);
+}
+
+body {
+    font-family: sans-serif;
+    background: var(--background);
+    color: white;
+    padding: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--main-theme);
+    border-radius: 0;
+}
+
+.card {
+    background: var(--secondary);
+    padding: 15px;
+    border-radius: 30px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.app-row {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+input {
+    background: var(--area);
+    border-radius: 10px;
+    color: var(--text-color);
+    border: 1px solid var(--border);
+    padding: 5px;
+}
+
+button {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 30px;
+    border: none;
+    width: 100%;
+}
+
+.save-btn {
+    background: var(--main-theme);
+    width: 100%;
+    font-weight: bold;
+    margin-top: 10px;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Super Wheel Settings</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+
+<body>
+    <h3>Ayarlar</h3>
+    <div class="card">
+        <label>Mouse Buton ID (Orta: 3):</label>
+        <input type="number" id="btnId">
+    </div>
+    <div class="card">
+        <label><input type="checkbox" id="autoStart"> Windows ile Başlat</label>
+    </div>
+    <div class="card">
+        <h4>Uygulamalar</h4>
+        <div id="appsContainer"></div>
+        <button onclick="addAppRow()" style="background: #008cff; color: white;">+ Ekle</button>
+    </div>
+    <button class="save-btn" onclick="saveSettings()">KAYDET</button>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        function addAppRow(name = '', path = '') {
+            const div = document.createElement('div');
+            div.className = 'app-row';
+            div.innerHTML = `
+                <input type="text" placeholder="Ad" class="app-name" value="${name}">
+                <input type="text" placeholder="Yol" class="app-path" value="${path}">
+                <button onclick="this.parentElement.remove()" style="background:#ff4d4d">X</button>
+            `;
+            document.getElementById('appsContainer').appendChild(div);
+        }
+
+        ipcRenderer.send('get-current-config');
+        ipcRenderer.on('current-config-data', (event, config) => {
+            document.getElementById('btnId').value = config.shortcutButton;
+            document.getElementById('autoStart').checked = config.autoStart;
+            config.apps.forEach(app => addAppRow(app.name, app.path));
+        });
+
+        function saveSettings() {
+            const apps = Array.from(document.querySelectorAll('.app-row')).map(row => ({
+                name: row.querySelector('.app-name').value,
+                path: row.querySelector('.app-path').value
+            }));
+            const config = {
+                shortcutButton: parseInt(document.getElementById('btnId').value),
+                autoStart: document.getElementById('autoStart').checked,
+                apps: apps
+            };
+            ipcRenderer.send('save-settings', config);
+            alert("Kaydedildi!");
+        }
+    </script>
+</body>
+
+</html>
