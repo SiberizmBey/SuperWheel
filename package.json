@@ -1,6 +1,6 @@
 {
   "name": "superwheel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "productName": "SuperWheel",
   "author": "NexaBAG Studios",
   "main": "main.js",
@@ -9,15 +9,13 @@
     "dist": "electron-builder --win"
   },
   "build": {
-    "appId": "com.nexabag.superwheel",
+    "appId": "com.nexabag.superwheel.launcher",
     "productName": "SuperWheel",
-    "directories": {
-      "output": "dist"
-    },
+    "copyright": "Copyright © 2026 NexaBAG Studios",
     "win": {
       "target": "nsis",
       "icon": "icon.ico",
-      "requestedExecutionLevel": "asInvoker"
+      "publisherName": "NexaBAG Studios"
     },
     "nsis": {
       "oneClick": false,
@@ -27,6 +25,7 @@
       "shortcutName": "SuperWheel",
       "installerIcon": "icon.ico",
       "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "SuperWheel (NexaBAG Studios)",
       "deleteAppDataOnUninstall": true,
       "runAfterFinish": true
     },
@@ -42,6 +41,7 @@
     "electron-builder": "^24.13.3"
   },
   "dependencies": {
+    "active-win": "^8.2.1",
     "auto-launch": "^5.0.6",
     "electron-store": "^8.1.0",
     "uiohook-napi": "^1.5.4"
